@@ -162,84 +162,89 @@ const inventory = [
     },
 ];
 
- //Opdracht 1a: Gebruik een array-methode om een array te maken met alle tv-type namen. Log de uitkomst in de console.
+//Opdracht 1a: Gebruik een array-methode om een array te maken met alle tv-type namen. Log de uitkomst in de console.
 
- const tvType = inventory.map((item) => {
+const tvType = inventory.map((item) => {
     return item.type;
 });
 
- console.log("tvType:" + tvType);
+console.log("tvType:" + tvType);
 
- // Opdracht 1b: Gebruik een array-methode om alle tv's te verzamelen (de hele objecten) die volledig uitverkocht zijn. Log de uitkomst in de console.
+// Opdracht 1b: Gebruik een array-methode om alle tv's te verzamelen (de hele objecten) die volledig uitverkocht zijn. Log de uitkomst in de console.
 
- const soldOut = inventory.filter((item) => {
-    let calculateSoldOut = item.originalStock - item.sold;
-    return calculateSoldOut <= 0;
-});
+function soldout() {
+    const soldOut = inventory.filter((item) => {
+        let calculateSoldOut = item.originalStock - item.sold;
+        return calculateSoldOut <= 0;
+    });
+    console.log(soldOut);
+}
 
- console.log(soldOut);
 
- // Opdracht 1c: Gebruik een array-methode om alle tv's te verzamelen (de hele objecten) die over AmbiLight beschikken. Log de uitkomst in de console.
+// Opdracht 1c: Gebruik een array-methode om alle tv's te verzamelen (de hele objecten) die over AmbiLight beschikken. Log de uitkomst in de console.
 
- const ambiLight = inventory.filter((item) => {
-    return item.options.ambiLight;
-});
+function ambilight() {
+    const ambiLight = inventory.filter((item) => {
+        return item.options.ambiLight;
+    });
+    console.log(ambiLight);
+}
 
- console.log(ambiLight);
+// Opdracht 1d: Schrijf een functie die alle tv's van laagste naar hoogste prijs sorteert. Log de uitkomst in de console.
 
- // Opdracht 1d: Schrijf een functie die alle tv's van laagste naar hoogste prijs sorteert. Log de uitkomst in de console.
+function sortPrice() {
+    const sortPrice = inventory.sort((a, b) => {
+        return a.price - b.price;
+    });
+    console.log(sortPrice);
+}
 
- const sortPrice = inventory.sort((a, b) => {
-    return a.price - b.price;
-});
- console.log(sortPrice);
+// Opdracht 2a: Hoeveel tv's zijn er al verkocht? Schrijf een script dat dit berekent. Log de uitkomst in de console.
 
- // Opdracht 2a: Hoeveel tv's zijn er al verkocht? Schrijf een script dat dit berekent. Log de uitkomst in de console.
+let countSoldTv = 0;
 
- let countSoldTv = 0;
-
- for (let i = 0; i < inventory.length; i++) {
+for (let i = 0; i < inventory.length; i++) {
     countSoldTv += inventory[i].sold;
 }
 
- console.log(countSoldTv);
+console.log(countSoldTv);
 
- //Opdracht 2b: Zorg ervoor dat dit aantal in het groen wordt weergegeven op de pagina.
+//Opdracht 2b: Zorg ervoor dat dit aantal in het groen wordt weergegeven op de pagina.
 
- const elementSoldTV = document.getElementById("sold-tv")
- elementSoldTV.textContent = countSoldTv;
+const elementSoldTV = document.getElementById("sold-tv")
+elementSoldTV.textContent = countSoldTv;
 
- // Opdracht 2c: Hoeveel tv's heeft Tech It Easy ingekocht? Schrijf een script dat dit berekent. Log de uitkomst in de console.
+// Opdracht 2c: Hoeveel tv's heeft Tech It Easy ingekocht? Schrijf een script dat dit berekent. Log de uitkomst in de console.
 
- let countPurchasedTv = 0;
+let countPurchasedTv = 0;
 
- for (let i = 0; i < inventory.length; i++) {
+for (let i = 0; i < inventory.length; i++) {
     countPurchasedTv += inventory[i].originalStock;
 }
 
- console.log(countPurchasedTv);
+console.log(countPurchasedTv);
 
- // Opdracht 2d: Zorg ervoor dat dit aantal in het blauw wordt weergegeven op de pagina.
+// Opdracht 2d: Zorg ervoor dat dit aantal in het blauw wordt weergegeven op de pagina.
 
- const elementPurchasedTV = document.getElementById("purchashed-tv")
- elementPurchasedTV.textContent = countPurchasedTv;
+const elementPurchasedTV = document.getElementById("purchashed-tv")
+elementPurchasedTV.textContent = countPurchasedTv;
 
 
- //Opdracht 2e: Geef in het rood weer hoeveel tv's er nog verkocht moeten worden.
+//Opdracht 2e: Geef in het rood weer hoeveel tv's er nog verkocht moeten worden.
 
- const elementToBeSold = document.getElementById("tv-to-be-sold")
- elementToBeSold.textContent = (countPurchasedTv - countSoldTv);
+const elementToBeSold = document.getElementById("tv-to-be-sold")
+elementToBeSold.textContent = (countPurchasedTv - countSoldTv);
 
- // Opdracht 3a: Gebruik een array-methode om alle tv merken (zoals Philips, NIKKEI, etc.) in een lijst op de pagina weer te geven.
- // Zorg ervoor dat dit ook zou werken als we 200 tv's in onze array zouden hebben staan. Dat er dubbele namen in zitten, is niet erg.
+// Opdracht 3a: Gebruik een array-methode om alle tv merken (zoals Philips, NIKKEI, etc.) in een lijst op de pagina weer te geven.
+// Zorg ervoor dat dit ook zou werken als we 200 tv's in onze array zouden hebben staan. Dat er dubbele namen in zitten, is niet erg.
 
- //Maak een Array die alle merknamen bevat
- const brandNames = inventory.map((item) => {
+//Maak een Array die alle merknamen bevat
+const brandNames = inventory.map((item) => {
     return item.brand
 });
 
- //Print de merknamen op het scherm in een lijst
- function printBrandNames() {                                                        // functie toegevoegd bij opdracht 4b
+//Print de merknamen op het scherm in een lijst
+function printBrandNames() {                                                        // functie toegevoegd bij opdracht 4b
     for (let i = 0; i < brandNames.length; i++) {
         const printBrandNames = document.createElement('li');
         printBrandNames.textContent = brandNames[i];
@@ -248,17 +253,17 @@ const inventory = [
     }
 }
 
- // Opdracht 4b: Schrijf de code uit 4a om naar een functie die een array met tv-objecten verwacht.
- // Het is handig om onze scripts als functies op te zetten, zodat we ze gemakkelijk kunnen hergebruiken. Tip: vergeet deze functie -declaratie niet aan te roepen!
+// Opdracht 4b: Schrijf de code uit 4a om naar een functie die een array met tv-objecten verwacht.
+// Het is handig om onze scripts als functies op te zetten, zodat we ze gemakkelijk kunnen hergebruiken. Tip: vergeet deze functie -declaratie niet aan te roepen!
 
- printBrandNames();
+printBrandNames();
 
- // Opdracht 5a: Zorg ervoor dat er een string wordt gegenereerd voor de naam van een tv.
- // Maak een functie die één enkel tv-object (zoals inventory[0] of inventory[6]) verwacht en
- // de naam op de volgende manier samenvoegt: [merk] [type] - [naam] zoals Philips 43PUS6504/12 - 4K TV of NIKKEI NH3216SMART - HD smart TV.
- // Test of jouw functie ook werkt wanneer er een ander tv object wordt meegegeven.
+// Opdracht 5a: Zorg ervoor dat er een string wordt gegenereerd voor de naam van een tv.
+// Maak een functie die één enkel tv-object (zoals inventory[0] of inventory[6]) verwacht en
+// de naam op de volgende manier samenvoegt: [merk] [type] - [naam] zoals Philips 43PUS6504/12 - 4K TV of NIKKEI NH3216SMART - HD smart TV.
+// Test of jouw functie ook werkt wanneer er een ander tv object wordt meegegeven.
 
- function television(television){
+function television(television) {
     return television.brand + " " + television.type + " " + television.name;
 }
 
@@ -266,13 +271,13 @@ console.log(television(inventory[0]));
 
 
 // Opdracht 5b: Zorg ervoor dat de prijs van een tv netjes geformat wordt. Maak een functie die één tv-prijs als parameter verwacht (zoals 379) en daar de volgende string van maakt: €379,-.
- // Test of jouw functie ook werkt wanneer er een andere tv-prijs wordt meegegeven.
+// Test of jouw functie ook werkt wanneer er een andere tv-prijs wordt meegegeven.
 
- function price(television) {
-    return "€"+television.price+",-";
+function price(television) {
+    return "€" + television.price + ",-";
 }
 
- console.log(price(inventory[0]));
+console.log(price(inventory[0]));
 
 // Opdracht 5c: Zorg ervoor dat er een string wordt gegenereerd voor alle beschikbare schermgroottes van één tv, in zowel inches als cm.
 // Doe dit door een functie te schrijven die één screen-sizes array verwacht ( zoals inventory[0].availableSizes)
@@ -285,7 +290,7 @@ console.log(television(inventory[0]));
 console.log(getScreenSize(inventory[3]));
 
 //Functie om screen sizes te printen, aangezien we te maken hebben met nested arrays (array in een array) dienen er twee for loops gebruikt te worden om tot de juiste string te komen
-                                                                                                       //String initializeren en declareren
+//String initializeren en declareren
 
 function getScreenSize(screenSize) {
     let sizeString = "";
@@ -303,20 +308,20 @@ function getScreenSize(screenSize) {
 
 //UITGESCHAKELD IVM OPDRACHT 5E ANDERS WORDT INFORMATIE DUBBEL OP HET SCHERM GEPRINT !!!!
 /**
-    const summary = document.getElementById("summary");
+ const summary = document.getElementById("summary");
 
-    const printTvSummaryOne = document.createElement("div");
-    printTvSummaryOne.textContent = television(inventory[3]);
-    summary.appendChild(printTvSummaryOne);
+ const printTvSummaryOne = document.createElement("div");
+ printTvSummaryOne.textContent = television(inventory[3]);
+ summary.appendChild(printTvSummaryOne);
 
-    const printTvSummaryTwo = document.createElement("div");
-    printTvSummaryTwo.textContent = price(inventory[3]);
-    summary.appendChild(printTvSummaryTwo);
+ const printTvSummaryTwo = document.createElement("div");
+ printTvSummaryTwo.textContent = price(inventory[3]);
+ summary.appendChild(printTvSummaryTwo);
 
-    const printTvSummaryThree = document.createElement("div");
-    printTvSummaryThree.textContent = getScreenSize(inventory[3]);
-    summary.appendChild(printTvSummaryThree);
-**/
+ const printTvSummaryThree = document.createElement("div");
+ printTvSummaryThree.textContent = getScreenSize(inventory[3]);
+ summary.appendChild(printTvSummaryThree);
+ **/
 
 
 // Opdracht 5e: Schrijf een functie die ALLE tv's weergeeft op de pagina zoals in het voorbeeld.
@@ -346,5 +351,20 @@ function displayTVSummary(item) {
         summary.appendChild(printSpace);
     }
 }
+
+// Bonusopdracht
+// Maak drie knoppen op de pagina: Sorteer op prijs, AmbiLight TV's en Uitverkochte exemplaren.
+// Gebruik de code die je in opdracht 2b, 2c en 2d hebt gemaakt en schrijf dit om naar functies zodat je ze kunt aanroepen op het moment dat de buttons geklikt worden.
+// Zorg ervoor dat de functies de uitkomsten in de de console loggen als de gebruiker op de bijbehorende knop klikt.
+// Tip: lees hiervoor paragraaf 7.4 op EdHub eens door!
+
+const sortPriceButton = document.getElementById("sort-price");
+sortPriceButton.addEventListener("click", sortPrice);
+
+const ambilightButton = document.getElementById("ambilight");
+ambilightButton.addEventListener("click", ambilight);
+
+const soldOutButton = document.getElementById("sold-out");
+soldOutButton.addEventListener("click", soldout);
 
 
